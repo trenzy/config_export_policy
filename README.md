@@ -17,7 +17,7 @@ The playbooks that this covers are:
     - userPasswd - Password for the provided username
     - status - Created to create a new policy. May be able to use deleted, but I have not tested it.
 
-There is a child object for the Management EPG. In this example, I see the OOB EPG.
+There is a child object for the Management EPG. In this example, I use the OOB EPG.
 
 - create_config_export.yml - Creates the configuration export policy. This probably only needs to be run once to create the policy. It requires that the remote location(Export Destination) be specified. This can be one that you created with remote_location.yml or one already configured through the GUI. 
 
