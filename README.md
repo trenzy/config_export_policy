@@ -10,14 +10,14 @@ The playbooks that this covers are:
     - dn - Distinguished name of the remote path 
     - remotePort - Remote port, most likely 22
     - name - name of the remote location
-    - protocol - Protocol that will be used with this remote location. This can be FTP (no), scp, or SFTP
+    - protocol - Protocol that will be used with this remote location. This can be FTP (no), SCP, or SFTP
     - host - The IP address or hostname of the host. 
     - remotePath - The remote path where the configuration export will go
     - userName - Username on the remote host that this should use
     - userPasswd - Password for the provided username
     - status - Created to create a new policy. May be able to use deleted, but I have not tested it.
 
-There is a child object for the Management EPG. In this example, I use the OOB EPG.
+There is a child object for the Management EPG. In this example, I use the OOB/Management EPG.
 
 - create_config_export.yml - Creates the configuration export policy. This probably only needs to be run once to create the policy. It requires that the remote location(Export Destination) be specified. This can be one that you created with remote_location.yml or one already configured through the GUI. 
 
