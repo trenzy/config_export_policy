@@ -10,12 +10,12 @@ The playbooks that this covers are:
     - dn - Distinguished name of the remote path 
     - remotePort - Remote port, most likely 22
     - name - name of the remote location
-protocol - Protocol that will be used with this remote location. This can be FTP (no), scp, or SFTP
-host - The IP address or hostname of the host. 
-remotePath - The remote path where the configuration export will go
-userName - Username on the remote host that this should use
-userPasswd - Password for the provided username
-status - Created to create a new policy. May be able to use deleted, but I have not tested it.
+    - protocol - Protocol that will be used with this remote location. This can be FTP (no), scp, or SFTP
+    - host - The IP address or hostname of the host. 
+    - remotePath - The remote path where the configuration export will go
+    - userName - Username on the remote host that this should use
+    - userPasswd - Password for the provided username
+    - status - Created to create a new policy. May be able to use deleted, but I have not tested it.
 
 There is a child object for the Management EPG. In this example, I see the OOB EPG.
 
