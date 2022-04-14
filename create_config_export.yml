@@ -1,0 +1,41 @@
+# Create a configuration export policy and export a config backup. 
+# This assumes that there is a remote path (SomeServer - replace this with your remote location) that
+# will be referenced.
+---
+- name: Configure a configuration export policy
+  hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Configuring a remote location
+    cisco.aci.aci_rest:
+      hostname: "{{ inventory_hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: no
+      path: /api/node/mo/uni/fabric/configexp-ansible_config_export.json
+      method: post
+      content:
+        {
+          "configExportP": {
+            "attributes": {
+              "dn": "uni/fabric/configexp-ansible_config_export",
+              "name": "ansible_config_export",
+              "adminSt": "triggered",
+              "rn": "configexp-ansible_config_export",
+              "status": "created"
+        },
+        "children": [
+           {
+             "configRsRemotePath": {
+               "attributes": {
+                 "tnFileRemotePathName": "SomeServer",
+                  "status": "created,modified"
+                },
+               "children": []
+              }
+           }
+        ]
+        }
+      }

@@ -1,0 +1,27 @@
+# Trigger a configuration export. This assumes that a configuration export policy has 
+# already been created and we just want to trigger an update
+---
+- name: Trigger a configuration export
+  hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Start a config export
+    cisco.aci.aci_rest:
+      hostname: "{{ inventory_hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: no
+      path: /api/node/mo/uni/fabric/configexp-ansible_config_export.json
+      method: post
+      content:
+        {
+          "configExportP": {
+            "attributes": {
+              "dn": "uni/fabric/configexp-ansible_config_export",
+              "adminSt": "triggered",
+            },
+           "children": []
+         }
+       }

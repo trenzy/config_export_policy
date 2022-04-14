@@ -1,0 +1,46 @@
+# Configure a remote location for backups and snapshots. This is using variable substituion to protect certain information
+# (username/password specifically). Probably only needs to be run once, but this is required before running any 
+# of the other config export playbooks.
+# This uses the aci_rest module via the cisco.aci Ansible collection
+---
+- name: Configure a Remote location
+  hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Configuring a remote location for backups
+    cisco.aci.aci_rest:
+      hostname: "{{ inventory_hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: no
+      path: /api/node/mo/{{ dn_path }}.json
+      method: post
+      content:
+        {
+          "fileRemotePath": {
+             "attributes": {
+               "dn": "uni/some/path/to/dn",
+               "remotePort": '{{ port }}',
+               "name": '{{ location }}',
+               "protocol": '{{ protocol }}',
+               "host": '{{ server }}',
+               "remotePath": '{{ remote_path }}',
+               "userName": '{{ user }}',
+               "userPasswd": '{{ userpass }}',
+               "status": "created"
+             },
+          "children": [
+             {
+               "fileRsARemoteHostToEpg": {
+                  "attributes": {
+                    "tDn": "uni/tn-mgmt/mgmtp-default/oob-default",
+                    "status": "created"
+                  },
+                  "children": []
+                }
+             }
+           ]
+          }
+        }
