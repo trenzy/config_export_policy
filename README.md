@@ -29,4 +29,4 @@ This playbook only requires the cisco.aci collection.
 
 In a future update, I may combine these and add logic to test if policies and/or remote locations are already created.
 
-This was tested with Ansible 2.12 base (Built with python 3.9.7) with ACI version 4.2(6h).
+This was tested with Ansible 2.12 core (Built with python 3.9.7) with ACI version 4.2(6h).
